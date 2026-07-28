@@ -7,16 +7,16 @@ model = joblib.load("spaceship_titanic_pipeline.joblib")
 
 PassengerId = st.text_input("Enter the id: ")
 HomePlanet = st.text_input("HomePlanet: ")
-CryoSleep = st.selectbox([True , False])
+CryoSleep = st.selectbox("sleep" , [True , False])
 Cabin = st.text_input("Enter the cabin: ")
 Destination = st.text_input("destination: ")
 Age = st.number_input("age")
-VIP = st.selectbox([True , False])
+VIP = st.selectbox("vip" , [True , False])
 RoomService = st.number_input("paid: ")
-FoodCourt = st.number_input("paid: ")
-ShoppingMall = st.number_input("paid: ")
-Spa = st.number_input("paid: ")
-VRDeck = st.number_input("paid: ")
+FoodCourt = st.number_input("paid1: ")
+ShoppingMall = st.number_input("paid2: ")
+Spa = st.number_input("paid3: ")
+VRDeck = st.number_input("paid4: ")
 Name = st.text_input("name: ")
 
 predict_clicked = st.button("Predict transported", use_container_width=True)
@@ -25,12 +25,12 @@ if predict_clicked:
     input_df = pd.DataFrame([{
         "PassengerId": PassengerId, 
         "HomePlanet": HomePlanet,
-        "CryoSleep ": CryoSleep ,
+        "CryoSleep": CryoSleep ,
         "Cabin": Cabin,
         "Destination": Destination,
         "Age": Age,
         "VIP": VIP,
-        "RoomService": "RoomService",
+        "RoomService": RoomService,
         "FoodCourt": FoodCourt,
         "ShoppingMall" : ShoppingMall,
         "Spa" : Spa,
