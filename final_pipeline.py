@@ -15,9 +15,13 @@ Vip_mode = X["VIP"].mode()[0]
 home_planet_mode = X["HomePlanet"].mode()[0]
 desination_planent_mode = X["Destination"].mode()[0]
 age_median = X["Age"].median()
+deck_mode = X["Deck"].mode()[0]
+spend_cols = ["RoomService", "FoodCourt", "ShoppingMall", "Spa", "VRDeck"]
+total_spend_train = X[spend_cols].fillna(0).sum(axis=1)
+spend_median = total_spend_train[total_spend_train > 0].median()
 
 
-transform_data = TitanicTransformer(Vip_mode , home_planet_mode , desination_planent_mode , age_median)
+transform_data = TitanicTransformer(Vip_mode , home_planet_mode , desination_planent_mode , age_median , deck_mode ,spend_median)
 
 
 numeric_coloumns = ["Age" , "VIP_Numeric" , "CryoSleep_Numeric" , "Total_spend" , "Group_size" , "Is_alone" , "Starboard_side" , "RoomService" , "FoodCourt" , "ShoppingMall" , "Spa" , "VRDeck" ]
@@ -69,3 +73,4 @@ boosted_forest_pipeline = Pipeline(
 ))
     ]
 )
+
