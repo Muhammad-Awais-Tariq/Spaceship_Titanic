@@ -18,3 +18,29 @@ ShoppingMall = st.number_input("paid: ")
 Spa = st.number_input("paid: ")
 VRDeck = st.number_input("paid: ")
 Name = st.text_input("name: ")
+
+predict_clicked = st.button("Predict transported", use_container_width=True)
+
+if predict_clicked:
+    input_df = pd.DataFrame([{
+        "PassengerId": PassengerId, 
+        "HomePlanet": HomePlanet,
+        "CryoSleep ": CryoSleep ,
+        "Cabin": Cabin,
+        "Destination": Destination,
+        "Age": Age,
+        "VIP": VIP,
+        "RoomService": "RoomService",
+        "FoodCourt": FoodCourt,
+        "ShoppingMall" : ShoppingMall,
+        "Spa" : Spa,
+        "VRDeck" : VRDeck,
+        "Name" : Name
+    }])
+
+    prediction = model.predict(input_df)[0]
+
+    if prediction == True:
+        st.success("Transported!")
+    else:
+        st.error("not")   
