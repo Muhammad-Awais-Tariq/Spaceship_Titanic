@@ -15,7 +15,7 @@ Vip_mode = X["VIP"].mode()[0]
 home_planet_mode = X["HomePlanet"].mode()[0]
 desination_planent_mode = X["Destination"].mode()[0]
 age_median = X["Age"].median()
-deck_mode = X["Deck"].mode()[0]
+deck_mode =  X["Cabin"].str.split("/").str[0].mode()[0]
 spend_cols = ["RoomService", "FoodCourt", "ShoppingMall", "Spa", "VRDeck"]
 total_spend_train = X[spend_cols].fillna(0).sum(axis=1)
 spend_median = total_spend_train[total_spend_train > 0].median()
