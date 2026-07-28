@@ -4,7 +4,7 @@ from sklearn.preprocessing import StandardScaler , FunctionTransformer , Ordinal
 from sklearn.compose import ColumnTransformer
 from xgboost                 import XGBClassifier
 from transformer import TitanicTransformer
-
+import joblib
 
 spaceship_df = pd.read_csv("F://Spaceship_Titanic//Data//train (3).csv")
 X = spaceship_df.drop(columns=["Transported"])
@@ -74,3 +74,6 @@ boosted_forest_pipeline = Pipeline(
     ]
 )
 
+
+boosted_forest_pipeline.fit(X,y)
+joblib.dump(boosted_forest_pipeline , "F://Spaceship_Titanic//spaceship_titanic_pipeline.joblib")
