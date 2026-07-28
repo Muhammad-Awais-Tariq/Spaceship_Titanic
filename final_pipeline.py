@@ -8,6 +8,12 @@ spaceship_df = pd.read_csv("F://Spaceship_Titanic//Data//train (3).csv")
 X = spaceship_df.drop(columns=["Transported"])
 y = spaceship_df["Transported"]
 
+Vip_mode = X["VIP"].mode()[0]
+home_planet_mode = X["HomePlanet"].mode()[0]
+desination_planent_mode = X["Destination"].mode()[0]
+age_median = X["Age"].median()
+
+
 numeric_coloumns = ["Age" , "VIP_Numeric" , "CryoSleep_Numeric" , "Total_spend" , "Group_size" , "Is_alone" , "Starboard_side" , "RoomService" , "FoodCourt" , "ShoppingMall" , "Spa" , "VRDeck" ]
 categorical_coloumns_one_hot = ["HomePlanet" , "Destination" , "Deck"]
 categorical_coloumns_ordinal = [ "Age_bracket" , "Spending_bracket"]
