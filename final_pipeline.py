@@ -3,15 +3,21 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler , FunctionTransformer , OrdinalEncoder , OneHotEncoder 
 from sklearn.compose import ColumnTransformer
 from xgboost                 import XGBClassifier
+from transformer import TitanicTransformer
+
 
 spaceship_df = pd.read_csv("F://Spaceship_Titanic//Data//train (3).csv")
 X = spaceship_df.drop(columns=["Transported"])
 y = spaceship_df["Transported"]
 
+
 Vip_mode = X["VIP"].mode()[0]
 home_planet_mode = X["HomePlanet"].mode()[0]
 desination_planent_mode = X["Destination"].mode()[0]
 age_median = X["Age"].median()
+
+
+transform_data = TitanicTransformer(Vip_mode , home_planet_mode , desination_planent_mode , age_median)
 
 
 numeric_coloumns = ["Age" , "VIP_Numeric" , "CryoSleep_Numeric" , "Total_spend" , "Group_size" , "Is_alone" , "Starboard_side" , "RoomService" , "FoodCourt" , "ShoppingMall" , "Spa" , "VRDeck" ]
@@ -57,7 +63,7 @@ preprocessor = ColumnTransformer(
 
 boosted_forest_pipeline = Pipeline(
     [
-        ("Feature_engineering" , FunctionTransformer(transform)),
+        ("Feature_engineering" , FunctionTransformer(transform_data)),
         ("Preprocessing" , preprocessor),
         ("Model" , XGBClassifier(subsample = 0.6, n_estimators = 100, min_child_weight = 5, max_depth = 5, learning_rate = 0.05, gamma = 1, colsample_bytree = 0.8
 ))
