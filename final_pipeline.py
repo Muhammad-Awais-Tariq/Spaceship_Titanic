@@ -3,7 +3,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler , FunctionTransformer , OrdinalEncoder , OneHotEncoder 
 from sklearn.compose import ColumnTransformer
 from xgboost                 import XGBClassifier
-from Final_pipeline.transformer import TitanicTransformer
+from transformer import TitanicTransformer
 import joblib
 
 spaceship_df = pd.read_csv("F://Spaceship_Titanic//Data//train (3).csv")

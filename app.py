@@ -1,7 +1,7 @@
 import streamlit as st
 import joblib
 import pandas as pd
-from Final_pipeline.transformer import TitanicTransformer
+from transformer import TitanicTransformer
 
 st.set_page_config(
     page_title="Spaceship Titanic Predictor",
